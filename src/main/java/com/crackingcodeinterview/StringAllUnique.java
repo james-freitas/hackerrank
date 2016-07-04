@@ -4,7 +4,7 @@ public class StringAllUnique {
 
     public static void main(String[] args) {
 
-        if (isUniqueChars("aa") ) {
+        if (isUniqueChars2("aa") ) {
             System.out.println("It's unique");
         } else {
             System.out.println("dont");
@@ -35,7 +35,9 @@ public class StringAllUnique {
     turns the bit on. It's equivalent to setting the valth bit of the number to 1.
 
      */
-    public static boolean isUniqueChars(String str) {
+
+
+    private static boolean isUniqueChars(String str) {
         if (str.length() > 26) { // NOTE: Are you sure this isn't 26?
             return false;
         }
@@ -44,6 +46,19 @@ public class StringAllUnique {
             int val = str.charAt(i) - 'a';
             if ((checker & (1 << val)) > 0) return false;
             checker |= (1 << val);
+        }
+        return true;
+    }
+
+    // book solution
+    private static boolean isUniqueChars2(String str){
+        boolean[] char_set = new boolean[256];
+        for (int i = 0; i < str.length(); i++) {
+            int val = str.charAt(i);
+            if(char_set[val]) {
+                return false;
+            }
+            char_set[val] = true;
         }
         return true;
     }
