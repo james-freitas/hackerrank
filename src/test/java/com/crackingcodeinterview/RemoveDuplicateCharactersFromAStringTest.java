@@ -1,6 +1,5 @@
 package com.crackingcodeinterview;
 
-import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -26,15 +25,23 @@ public class RemoveDuplicateCharactersFromAStringTest {
     @Test
     public void shouldReturnTrueIfTheWordDontContainAnyDuplicates() {
         String input = "abcd";
-        String inputTransformed = remover.removeDuplicateCharacters(input);
+        String inputTransformed = remover.removeDuplicate(input);
         assertThat(input, is(equalTo(inputTransformed)));
     }
 
     @Test
     public void shouldReturnAStringWithNonRepeatedCharactersForAnInputContainingAllDuplicates() {
         String input = "aaaa";
-        String inputTransformed = remover.removeDuplicateCharacters(input);
+        String inputTransformed = remover.removeDuplicate(input);
         assertThat(inputTransformed, is(equalTo("a")));
+    }
+
+
+    @Test
+    public void shouldReturnTrueIfTheWordIsNull() {
+        String input = null;
+        String inputTransformed = remover.removeDuplicate(input);
+        assertThat(input, is(equalTo("")));
     }
 
 }
