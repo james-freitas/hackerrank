@@ -3,7 +3,7 @@ package com.crackingcodeinterview;
 public class RemoveDuplicateCharactersFromAString {
 
     public static void main(String[] args) {
-        String inputWord = null;
+        String inputWord = "ababab";
 
         RemoveDuplicateCharactersFromAString remover = new RemoveDuplicateCharactersFromAString();
 
@@ -12,6 +12,9 @@ public class RemoveDuplicateCharactersFromAString {
 
     public String removeDuplicates(char[] str){
         if(str == null) {
+            return new String(str);
+        }
+        if(str.equals("")) {
             return new String(str);
         }
         int len = str.length;
@@ -52,6 +55,9 @@ public class RemoveDuplicateCharactersFromAString {
             return "";
         }
 
+        if(inputWord == "") {
+            return "";
+        }
         while(i < inputWord.length()) {
             if(  inputWord.indexOf(inputWord.charAt(i))  != inputWord.lastIndexOf(inputWord.charAt(i)) )  {
                 part1 = inputWord.substring(0, inputWord.lastIndexOf(inputWord.charAt(i)));
@@ -65,8 +71,7 @@ public class RemoveDuplicateCharactersFromAString {
 
 
     public String removeDuplicate(String inputWord) {
-        int i = 0;
-        int j;
+
 
         if(inputWord == null) {
             return "";
@@ -76,14 +81,21 @@ public class RemoveDuplicateCharactersFromAString {
             return "";
         }
 
+        String letter;
+        String part1;
+        String part2;
+        int i = 0;
+
         while (i < inputWord.length()) {
-            j = i + 1;
-            while( j < inputWord.length() ) {
-                if(inputWord.charAt(i) == inputWord.charAt(j)){
-                    inputWord = inputWord.substring(0, i+1) + inputWord.substring(j + 1, inputWord.length() );
-                }
-                j++;
-            }
+
+            letter = String.valueOf(inputWord.charAt(i));
+            part1 = inputWord.substring(0, i + 1);
+
+            part2 = inputWord.substring(i + 1);
+            part2 = part2.replaceAll(letter, "");
+
+            inputWord = part1 + part2;
+
             i++;
         }
         return inputWord;

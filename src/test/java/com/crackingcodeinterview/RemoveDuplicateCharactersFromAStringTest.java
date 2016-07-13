@@ -41,7 +41,30 @@ public class RemoveDuplicateCharactersFromAStringTest {
     public void shouldReturnTrueIfTheWordIsNull() {
         String input = null;
         String inputTransformed = remover.removeDuplicate(input);
+        assertThat(input, is(equalTo(null)));
+    }
+
+
+    @Test
+    public void shouldReturnTrueIfTheWordIsEmpty() {
+        String input = "";
+        String inputTransformed = remover.removeDuplicate(input);
         assertThat(input, is(equalTo("")));
     }
 
+
+    @Test
+    public void shouldRemoveAllContinuousDuplicateCharacters(){
+        String input = "aaabbb";
+        String inputTransformed = remover.removeDuplicate(input);
+        assertThat(inputTransformed, is(equalTo("ab")));
+    }
+
+
+    @Test
+    public void shouldRemoveAllNonContiguousDuplicateCharacters(){
+        String input = "ababab";
+        String inputTransformed = remover.removeDuplicate(input);
+        assertThat(inputTransformed, is(equalTo("ab")));
+    }
 }
